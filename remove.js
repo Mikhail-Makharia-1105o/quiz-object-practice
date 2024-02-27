@@ -4,6 +4,7 @@ export function deleteName(nameToDelete) {
     for (const name of nameArray) {
         if (name.name.toLowerCase() === nameToDelete.toLowerCase()) {
             console.log(nameArray.splice(nameArray.indexOf(nameToDelete), 1) + ' was deleted!');
+            return;
         }
     }
     console.log('Name not found!');

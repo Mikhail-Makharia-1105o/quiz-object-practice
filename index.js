@@ -3,6 +3,7 @@ import rds from "readline-sync";
 import fs from "fs";
 import { removeDuplicates, loadNameData, writeName } from "./writeName.js";
 import { deleteName } from "./remove.js";
+import { gameItself } from "./answerQuestion.js";
 export let nameArray = [];
 export const questionArray = [];
 loadNameData();
@@ -60,9 +61,11 @@ export default function gameProgression() {
         writeName(rds.question('Name?: '));
         break;
       case "s":
+        gameItself();
         break;
       case "r":
-        deleteName(rds.question('Name?'))
+        deleteName(rds.question('Name?: '))
+        break;
       case "q":
         exitFlag = true;
         let saveString = "";

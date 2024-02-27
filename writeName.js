@@ -2,6 +2,8 @@ import rds from "readline-sync";
 import fs from "fs";
 import { nameArray } from "./index.js";
 
+export let currentUser = 0;
+
 export function removeDuplicates(arr) {
   let newArray = [];
   let uniqueObject = {};
@@ -16,7 +18,8 @@ export function removeDuplicates(arr) {
 export function writeName(nameU) {
   for (const name of nameArray) {
     if (name.name.toLowerCase() === nameU.toLowerCase()) {
-      console.log('Name already exists!');
+      console.log('Name found!');
+      currentUser = name;
       return;
     }
   }
