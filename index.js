@@ -1,7 +1,7 @@
 import writeQuestion from "./writeQuestion.js";
 import rds from "readline-sync";
 import fs from "fs";
-import { removeDuplicates, loadNameData, writeName } from "./writeName.js";
+import { removeDuplicates, loadNameData, writeName, currentUser } from "./writeName.js";
 import { deleteName } from "./remove.js";
 import { gameItself } from "./answerQuestion.js";
 export let nameArray = [];
@@ -26,6 +26,9 @@ if (fs.readFileSync("questions.txt", "utf-8") === "") {
         }
         object[value.split("=")[0]] = value.split("=")[1];
       });
+      if (object.type === 'answer') {
+        object.answers = object.answers.split(',')
+      }
       questionArray.push(object);
     });
 }
@@ -55,7 +58,7 @@ export default function gameProgression() {
       )
     ) {
       case "w":
-        questionArray.push(writeQuestion(author));
+        questionArray.push(writeQuestion(currentUser || 'Anonymous'));
         break;
       case "n":
         writeName(rds.question('Name?: '));

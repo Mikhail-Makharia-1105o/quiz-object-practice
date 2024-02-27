@@ -98,11 +98,9 @@ export function gameItself() {
         usAnswer = +value;
         break;
       case "answer":
-        const temp = [...gamePool];
-        const shuffledAnswers = [...shuffleArray(gamePool[i].answers)];
-        gamePool = [...temp];
-        for (const answer of shuffleArray) {
-          console.log(i + ": " + answer);
+        shuffleArray(gamePool[i].answers)
+        for (const answer of gamePool[i].answers) {
+          console.log(gamePool[i].answers.indexOf(answer) + ": " + answer);
         }
         usAnswer = rds.question("Your answer(word): ") || "";
         break;
@@ -116,13 +114,13 @@ export function gameItself() {
         if (gamePool[i].points >= 0) {
           currentUser.score += +gamePool[i].points;
           console.log(currentUser);
-        } else {
-          console.log("Not logged in! Points are not counted!");
-        }
+        } 
+      } else {
+        console.log("Not logged in! Points are not counted!");
       }
     } else {
-      console.log(usAnswer + ' your answer!');
-      console.log(gamePool[i].answer + ' the right answer!');
+      console.log(usAnswer + ' was your answer!');
+      console.log(gamePool[i].answer + ' was the right answer!');
       console.log('Incorrect!');
     }
   }

@@ -28,7 +28,7 @@ export default function writeQuestion(author = "Anonymous") {
     case "text":
       questionObject.type = "text";
       console.log("Type set to text.");
-      questionObject.correct = rds.question(
+      questionObject.answer = rds.question(
         "Input the correct answer(is not case sensitive): "
       );
       break;
@@ -41,29 +41,30 @@ export default function writeQuestion(author = "Anonymous") {
         return;
       }
       for (let i = 0; i < amount; i += 1) {
-        const answer = rds.question(
-          'Input a single asnwer! \nIf it is the right answer, follow it with " CORRECT"(note the space). \nIf several correct answers are inputted, only the first will count as the correct one, while the rest will be ignored.\n: '
+        const usans = rds.question(
+          'Input a single answer! \nIf it is the right answer, follow it with " CORRECT"(note the space). \nIf several correct answers are inputted, only the first will count as the correct one, while the rest will be ignored.\n: '
         );
 
-        if (answer.split(" ").slice(-1).join() === "CORRECT") {
+        if (usans.split(" ").slice(-1).join() === "CORRECT") {
           console.log("Correct answer input!");
-          questionObject.correct = answer.split(" ").slice(0, -1).join();
-          answerArray.push(answer.split(" ").slice(0, -1).join());
+          questionObject.answer = usans.split(" ").slice(0, -1).join();
+          answerArray.push(usans.split(" ").slice(0, -1).join());
         } else {
-          answerArray.push(answer);
+          answerArray.push(usans);
         }
       }
-      if (!(questionObject.answer)) {
+      if (questionObject.answer) {
+        questionObject.answers = answerArray;
+        console.log("Type set to answer.");
+        console.log(questionObject);
+      } else {
         console.log('No answer given.');
         return;
       }
-      questionObject.answers = answerArray;
-      console.log("Type set to answer.");
       break;
     default:
-      console.log('Type incorrect! Defaulting to "text".');
-      questionObject.type = "text";
-      break;
+      console.log('Wrong type!');
+      return;
   }
   console.log(questionObject);
   return questionObject;
