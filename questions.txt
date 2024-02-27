@@ -1,0 +1,1 @@
+category=science||question=hello how are you||points=20||author=Anonymous||type=slider||answer=50||STOP
