@@ -1,1 +1,1 @@
-kola=0||misha=42||
+misha=0||

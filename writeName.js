@@ -16,10 +16,10 @@ export function removeDuplicates(arr) {
   return newArray;
 }
 export function writeName(nameU) {
-  for (const name of nameArray) {
-    if (name.name.toLowerCase() === nameU.toLowerCase()) {
-      console.log('Name found!');
-      currentUser = name;
+  for (const naem of nameArray) {
+    if (naem.name.toLowerCase() === nameU.toLowerCase()) {
+      console.log('Name found! User logged in.');
+      currentUser = naem;
       return;
     }
   }
@@ -28,6 +28,7 @@ export function writeName(nameU) {
     score: 0,
   });
   console.log(nameArray);
+  return;
 }
 export function loadNameData() {
   if (fs.readFileSync("names.txt", "utf-8") === "") {

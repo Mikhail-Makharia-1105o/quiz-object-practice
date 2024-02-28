@@ -59,6 +59,8 @@ export function gameItself() {
     console.log("Question: " + gamePool[i].question);
     console.log("Category: " + gamePool[i].category);
     console.log("Type: " + gamePool[i].type);
+    console.log("Added by: " + gamePool[i].author);
+    
     let usAnswer;
     switch (gamePool[i].type) {
       case "text":
@@ -100,7 +102,7 @@ export function gameItself() {
       case "answer":
         shuffleArray(gamePool[i].answers)
         for (const answer of gamePool[i].answers) {
-          console.log(gamePool[i].answers.indexOf(answer) + ": " + answer);
+          console.log((gamePool[i].answers.indexOf(answer) + 1) + ": " + answer);
         }
         usAnswer = rds.question("Your answer(word): ") || "";
         break;

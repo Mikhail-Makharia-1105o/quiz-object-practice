@@ -1,12 +1,12 @@
 import rds from "readline-sync";
 
-export default function writeQuestion(author = "Anonymous") {
+export default function writeQuestion(author) {
   console.log("Time to create your own question!");
   const questionObject = {
     category: rds.question("Category: ").toLowerCase().trim() || "Oops...",
     question: rds.question("Question: ").toLowerCase().trim() || "Oops...",
     points: +rds.question("Amount of points awarded: ") || 0,
-    author: author,
+    author: author.name || 'Anonymous',
   };
   const type = rds.question(
     "Choose the type!\nslider - answer is given using a number slider!\ntext - answer is written using text(non case sensitive, but has to be exact)\nanswer - answer is chosen from the provided options\n: "
